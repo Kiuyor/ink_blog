@@ -1,0 +1,37 @@
+# build output
+dist/
+
+# generated types
+.astro/
+
+# generated OG images (built at deploy time)
+public/og/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+.vercel
+
+package-lock.json
+bun.lockb
+yarn.lock
+
+# ide
+.idea
+*.iml
+
+# local sandbox preview server (dev-only workaround)
+scripts/_serve.mjs
