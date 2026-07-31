@@ -6,7 +6,7 @@ image: ''
 tags: [关于]
 category: 关于
 draft: false
-lang: ''
+lang: zh
 ---
 
 嗨喽，我是**墨水**（ink）。

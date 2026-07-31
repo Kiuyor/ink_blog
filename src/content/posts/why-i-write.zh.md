@@ -6,7 +6,7 @@ image: ''
 tags: [随笔]
 category: 随笔
 draft: false
-lang: ''
+lang: zh
 ---
 
 ## 写在前面

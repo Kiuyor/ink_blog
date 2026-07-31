@@ -6,7 +6,7 @@ image: ''
 tags: [工具, 写作]
 category: 写作
 draft: false
-lang: ''
+lang: zh
 ---
 
 写这个博客，我的工具链追求一条原则：**内容永远是纯文本，发布尽量零点击**。

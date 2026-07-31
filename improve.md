@@ -108,7 +108,9 @@
 
 ### P3
 
-11. **中英双语（i18n 已支持）。** 若受众含国际读者，开 EN/中 双版，对标 Dev.to/Medium 的国际流量。**（未做）**
+11. **中英双语（已上线）。** 完整语言路由 `/`（中文，保持旧链接/OG/Giscus 不破）+ `/en/`（英文），base-slug 互链 + 右上角 中/EN 切换器 + UI 字典随语言。**（已做，2026-07-31）**
+   - 架构：`prefixDefaultLocale:false`；内容 `<base>.zh.md`/`<base>.en.md` + `lang` 字段，按 base slug 共享路由，渲染期按 `Astro.currentLocale` 选版本（缺另一语言回退同 base）。
+   - 关键坑：Astro i18n **静态构建不自动生成非默认语言页**，须在 `src/pages/en/` 下提供物理文件（复制根页 + 导入改别名）；`entry.id` 保留点（`hello-im-ink.zh.md`）而 `entry.slug` 被 slugify 去点，URL 拼接统一用 `entry.id` + `getBaseSlug`；`getLinkPresets` 返回裸路径避免 nav 双重 `/en/` 前缀。
 12. **性能优化（核心已做）+ 预算/监控/CDN（待做）。**
    - ✅ **LCP 解耦 Swup 过渡**（`087e539`）：首屏内容不再被 SPA 过渡 JS 门控，LCP 从 ~4.9s 降到 ~0.45s。
    - ✅ **LCP 图片 eager + fetchpriority=high**（`215c373`）：侧栏头像（当前真实 LCP 元素）改为即载高优先，移除 `loading=lazy`；列表首篇封面 / 文章页 hero 预留同逻辑。
@@ -122,7 +124,7 @@
 
 ## 六、一句话总结
 
-ink_blog 的护城河是 **「Astro 零-JS 极致性能 + 技术向富 Markdown 写作（数学/代码/GitHub 卡）+ 数据 100% 归你、无算法无订阅」**。截至 2026-07-31，**P0/P1 已全部交付并上线、P2 收官**（rebrand＋真文章、Pagefind 中文分词补偿、Giscus、Umami、自动 OG 图、llms.txt＋JSON-LD、Obsidian 写作流、读者主题选择器）；**P3 性能核心优化也已落地**（LCP 解耦 Swup ~4.9s→0.45s、LCP 图片 eager+high、Pagefind 懒加载＋Umami idle 注入把关键路径压到 ~1.4s、Roboto 预加载、头像色块化 WebP 56KB→25KB），线上 `blog.suchitems.top` 已不再是 Demo 脚手架、且 Lighthouse 已转绿。剩余 **P3 三项中**：性能预算/监控仪表 + 图片 CDN、中英双语、资产可移植性文档——均为锦上添花，可按需推进。把"技术名片资产"这个差异化真正打出来，去赢公众号/掘金/CSDN 那些"数据归平台"的对手。
+ink_blog 的护城河是 **「Astro 零-JS 极致性能 + 技术向富 Markdown 写作（数学/代码/GitHub 卡）+ 数据 100% 归你、无算法无订阅」**。截至 2026-07-31，**P0/P1 已全部交付并上线、P2 收官**（rebrand＋真文章、Pagefind 中文分词补偿、Giscus、Umami、自动 OG 图、llms.txt＋JSON-LD、Obsidian 写作流、读者主题选择器）；**P3 性能核心优化也已落地**（LCP 解耦 Swup ~4.9s→0.45s、LCP 图片 eager+high、Pagefind 懒加载＋Umami idle 注入把关键路径压到 ~1.4s、Roboto 预加载、头像色块化 WebP 56KB→25KB），线上 `blog.suchitems.top` 已不再是 Demo 脚手架、且 Lighthouse 已转绿；**中英双语（#11）也已上线**（`/`、`/en/` 双路由 + 切换器 + UI 随语言）。剩余 **P3 待做**：性能预算/监控仪表 + 图片 CDN、资产可移植性文档——均为锦上添花，可按需推进。把"技术名片资产"这个差异化真正打出来，去赢公众号/掘金/CSDN 那些"数据归平台"的对手。
 
 ---
 

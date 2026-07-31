@@ -6,7 +6,7 @@ image: ''
 tags: [写作, Markdown]
 category: 写作
 draft: false
-lang: ''
+lang: zh
 ---
 
 这个博客基于 **Astro + Expressive Code**，对写技术内容特别友好。下面是几种常用能力，你可以直接照着抄格式。

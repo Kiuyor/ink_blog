@@ -1,13 +1,19 @@
 import { getSortedPosts } from "@utils/content-utils";
 import { siteConfig } from "@/config";
+import { getLocaleUrl, getBaseSlug } from "@utils/url-utils";
+
+function localeShortOf(locale: string): "zh" | "en" {
+	return locale.toLowerCase().startsWith("en") ? "en" : "zh";
+}
 
 /**
  * Build an `llms.txt` index (https://llmstxt.org) — a machine-readable table of
  * contents so LLMs / AI search can discover and cite the blog's articles.
- * Uses absolute URLs derived from the configured `site`.
+ * Locale-filtered and uses locale-aware URLs.
  */
-export async function buildLlmsTxt(siteBase: string): Promise<string> {
-	const posts = await getSortedPosts();
+export async function buildLlmsTxt(siteBase: string, locale = "zh"): Promise<string> {
+	const loc = localeShortOf(locale);
+	const posts = (await getSortedPosts()).filter((p) => (p.data.lang || "zh") === loc);
 	const lines: string[] = [];
 
 	lines.push(`# ${siteConfig.title}`);
@@ -16,12 +22,12 @@ export async function buildLlmsTxt(siteBase: string): Promise<string> {
 		lines.push(`> ${siteConfig.subtitle}`);
 		lines.push("");
 	}
-	lines.push(`Personal tech blog (language: ${siteConfig.lang}).`);
+	lines.push(`Personal tech blog (language: ${loc === "en" ? "en" : "zh-CN"}).`);
 	lines.push("");
 
 	lines.push("## Posts");
 	for (const post of posts) {
-		const url = `${siteBase}/posts/${post.slug}/`;
+		const url = `${siteBase}${getLocaleUrl(`/posts/${getBaseSlug(post.id)}/`, loc)}`;
 		const description = (post.data.description || "").trim();
 		if (description) {
 			lines.push(`- [${post.data.title}](${url}): ${description}`);
@@ -32,9 +38,9 @@ export async function buildLlmsTxt(siteBase: string): Promise<string> {
 
 	lines.push("");
 	lines.push("## Other");
-	lines.push(`- [About](${siteBase}/about/)`);
-	lines.push(`- [Archive](${siteBase}/archive/)`);
-	lines.push(`- [RSS Feed](${siteBase}/rss.xml)`);
+	lines.push(`- [About](${siteBase}${getLocaleUrl("/about/", loc)})`);
+	lines.push(`- [Archive](${siteBase}${getLocaleUrl("/archive/", loc)})`);
+	lines.push(`- [RSS Feed](${siteBase}${getLocaleUrl("/rss.xml", loc)})`);
 
 	return lines.join("\n");
 }
@@ -43,8 +49,9 @@ export async function buildLlmsTxt(siteBase: string): Promise<string> {
  * Build `llms-full.txt` — the entire blog content inlined (per the llms.txt spec's
  * optional companion file), so an LLM can read every article without extra fetches.
  */
-export async function buildLlmsFullTxt(siteBase: string): Promise<string> {
-	const posts = await getSortedPosts();
+export async function buildLlmsFullTxt(siteBase: string, locale = "zh"): Promise<string> {
+	const loc = localeShortOf(locale);
+	const posts = (await getSortedPosts()).filter((p) => (p.data.lang || "zh") === loc);
 	const parts: string[] = [];
 
 	parts.push(`# ${siteConfig.title} — full content`);
@@ -58,7 +65,7 @@ export async function buildLlmsFullTxt(siteBase: string): Promise<string> {
 		if (post.data.tags && post.data.tags.length > 0) {
 			parts.push(`Tags: ${post.data.tags.join(", ")}`);
 		}
-		parts.push(`URL: ${siteBase}/posts/${post.slug}/`);
+		parts.push(`URL: ${siteBase}${getLocaleUrl(`/posts/${getBaseSlug(post.id)}/`, loc)}`);
 		parts.push("");
 		const body = typeof post.body === "string" ? post.body : String(post.body || "");
 		parts.push(body);

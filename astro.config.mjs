@@ -29,6 +29,17 @@ export default defineConfig({
 	site: "https://blog.suchitems.top/",
 	base: "/",
 	trailingSlash: "always",
+	i18n: {
+		defaultLocale: "zh",
+		locales: ["zh", "en"],
+		// Keep the existing Chinese site at the root ("/") so today's launched
+		// URLs / OG cards / Giscus threads / SEO all keep working. English lives
+		// under "/en/". Flip to `true` later if you want symmetric /zh + /en.
+		prefixDefaultLocale: false,
+		routing: {
+			redirectToDefaultLocale: false,
+		},
+	},
 	integrations: [
 		tailwind({
 			nesting: true,

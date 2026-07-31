@@ -1,7 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
 import { type NavBarLink } from "../../types/config";
-import { url } from "../../utils/url-utils";
+import { url, getLocaleUrl } from "../../utils/url-utils";
+import LanguageSwitcher from "../LanguageSwitcher.astro";
 
 interface Props {
 	links: NavBarLink[];
@@ -11,7 +12,7 @@ const links = Astro.props.links;
 ---
 <div id="nav-menu-panel" class:list={["float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2"]}>
     {links.map((link) => (
-        <a href={link.external ? link.url : url(link.url)} class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+        <a href={link.external ? link.url : getLocaleUrl(link.url)} class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
             hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
         "
            target={link.external ? "_blank" : null}
@@ -29,4 +30,7 @@ const links = Astro.props.links;
             </Icon>}
         </a>
     ))}
+    <div class="flex justify-center pt-1">
+        <LanguageSwitcher></LanguageSwitcher>
+    </div>
 </div>

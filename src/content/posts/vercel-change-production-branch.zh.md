@@ -6,7 +6,7 @@ image: ''
 tags: [Vercel, 部署, 教程]
 category: 技术
 draft: false
-lang: ''
+lang: zh
 ---
 
 习惯了 Cloudflare Pages 的「 Production 分支」直白下拉，刚切回 Vercel 想改主干分支时，很容易在 Git 设置页里翻半天也找不到那个选项。本文记录一下正确的入口和几种改法。
