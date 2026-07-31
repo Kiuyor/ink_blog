@@ -1,6 +1,7 @@
 MIT License
 
 Copyright (c) 2024 saicaca
+Copyright (c) 2026 ink
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +20,28 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---------------------------------------------------------------------------
+
+SCOPE / 适用范围
+
+The MIT License above applies ONLY to the source code of this project — the
+site theme, build scripts, configuration, and other software components
+(originally forked from the Fuwari theme by saicaca and customized by ink).
+
+以上 MIT 许可证仅适用于本项目的源代码——站点主题、构建脚本、配置及其他
+软件组件（fork 自 saicaca 的 Fuwari 主题，并由 ink 定制）。
+
+Blog content — including but not limited to all articles under
+`src/content/`, text, and images authored by ink — is NOT covered by the MIT
+License. All such content is:
+
+    Copyright (c) 2026 ink. All Rights Reserved.
+
+博客内容——包括但不限于 `src/content/` 下的全部文章、文字与图片（由 ink
+创作）——不适用 MIT 许可证，保留所有权利：未经作者书面许可，不得转载、
+复制、改编或用于任何用途。
+
+Third-party assets (fonts, icons, libraries) remain under their respective
+original licenses.
+第三方资源（字体、图标、依赖库）仍遵循其各自的原始许可证。

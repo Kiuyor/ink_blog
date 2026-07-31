@@ -132,4 +132,8 @@ OPENAI_API_KEY=sk-xxx OPENAI_BASE_URL=https://api.openai.com/v1 OPENAI_MODEL=gpt
 
 ## 📄 License
 
-MIT（基于 [Fuwari](https://github.com/saicaca/fuwari) 二次开发，原版权 © 2024 saicaca）。
+本项目采用**双层授权**：
+
+- **代码**（主题、脚本、配置等软件部分）：[MIT License](./LICENSE)。基于 [Fuwari](https://github.com/saicaca/fuwari) 二次开发，保留原版权 © 2024 saicaca，并追加 © 2026 ink。你可以自由使用、修改、再发布这部分代码。
+- **博客内容**（`src/content/` 下的全部文章、文字与图片）：**版权所有 © 2026 ink，保留所有权利（All Rights Reserved）**。未经作者书面许可，不得转载、复制、改编或用于任何用途。
+- **第三方资源**（字体、图标、依赖库）：遵循其各自的原始许可证。
