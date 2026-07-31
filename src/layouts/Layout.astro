@@ -3,6 +3,11 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
+// preload the two most-used Roboto subsets so they start downloading early
+// (Astro resolves these to the same hashed /_astro/*.woff2 URL the @font-face uses, so no double fetch)
+import robotoLatin400 from "@fontsource/roboto/files/roboto-latin-400-normal.woff2";
+import robotoLatin700 from "@fontsource/roboto/files/roboto-latin-700-normal.woff2";
+
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import { profileConfig, siteConfig, umamiConfig } from "@/config";
 import {
@@ -106,6 +111,13 @@ const bannerOffset =
 
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+
+		<!-- performance: warm up third-party origins used during load -->
+		<link rel="preconnect" href="https://umami-g3n6.vercel.app" />
+		<link rel="preconnect" href="https://api.iconify.design" />
+		<!-- preload key Roboto subsets (latin 400 body / 700 headings) to reduce font swap latency -->
+		<link rel="preload" as="font" type="font/woff2" href={robotoLatin400} crossorigin="anonymous" />
+		<link rel="preload" as="font" type="font/woff2" href={robotoLatin700} crossorigin="anonymous" />
 		{favicons.map(favicon => (
 			<link rel="icon"
 				  href={favicon.src.startsWith('/') ? url(favicon.src) : favicon.src}
