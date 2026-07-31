@@ -12,6 +12,30 @@ let result: SearchResult[] = [];
 let isSearching = false;
 let pagefindLoaded = false;
 let initialized = false;
+let pagefindLoading = false;
+
+// Lazily load the Pagefind engine only when the user first interacts with search,
+// so its ~10KB bundle stays off the initial critical path.
+const loadPagefind = async () => {
+	if (pagefindLoading || (window as any).pagefind) return;
+	pagefindLoading = true;
+	const scriptUrl = url("/pagefind/pagefind.js");
+	try {
+		const response = await fetch(scriptUrl, { method: "HEAD" });
+		if (!response.ok) throw new Error(`Pagefind script not found: ${response.status}`);
+		const pagefind = await import(scriptUrl);
+		await pagefind.options({ excerptLength: 20 });
+		(window as any).pagefind = pagefind;
+		document.dispatchEvent(new CustomEvent("pagefindready"));
+	} catch (error) {
+		console.error("Failed to load Pagefind:", error);
+		(window as any).pagefind = {
+			search: () => Promise.resolve({ results: [] }),
+			options: () => Promise.resolve(),
+		};
+		document.dispatchEvent(new CustomEvent("pagefindloaderror"));
+	}
+};
 
 const fakeResult: SearchResult[] = [
 	{
@@ -144,7 +168,7 @@ $: if (initialized && keywordMobile) {
       dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
 ">
     <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
-    <input id="site-search-desktop" name="q" autocomplete="off" placeholder="{i18n(I18nKey.search)}" bind:value={keywordDesktop} on:focus={() => search(keywordDesktop, true)}
+    <input id="site-search-desktop" name="q" autocomplete="off" placeholder="{i18n(I18nKey.search)}" bind:value={keywordDesktop} on:focus={() => { loadPagefind(); search(keywordDesktop, true); }}
            class="transition-all pl-10 text-sm bg-transparent outline-0
          h-full w-40 active:w-60 focus:w-60 text-black/80 dark:text-white/80 placeholder:text-black/70 dark:placeholder:text-white/60"
     >
@@ -167,6 +191,7 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
   ">
         <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
         <input id="site-search-mobile" name="q" autocomplete="off" placeholder="Search" bind:value={keywordMobile}
+               on:focus={() => { loadPagefind(); search(keywordMobile, false); }}
                class="pl-10 absolute inset-0 text-sm bg-transparent outline-0
                focus:w-60 text-black/80 dark:text-white/80 placeholder:text-black/70 dark:placeholder:text-white/60"
         >

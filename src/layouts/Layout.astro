@@ -162,9 +162,24 @@ const bannerOffset =
 
 		<slot name="head"></slot>
 
-		{/* Umami 隐私分析：无 Cookie、数据归站长方。仅 enabled 时注入全局追踪脚本 */}
+		{/* Umami 隐私分析：无 Cookie、数据归站长方。仅 enabled 时注入全局追踪脚本。
+		    用 requestIdleCallback 晚注入，把分析信标移出初始关键渲染路径（不影响 LCP/TBT）。 */}
 		{umamiConfig.enabled && (
-			<script is:inline defer src={umamiConfig.src} data-website-id={umamiConfig.websiteId}></script>
+			<script is:inline define:vars={{ umamiSrc: umamiConfig.src, umamiId: umamiConfig.websiteId }}>
+				(function () {
+					var inject = function () {
+						var s = document.createElement('script');
+						s.src = umamiSrc;
+						s.setAttribute('data-website-id', umamiId);
+						document.head.appendChild(s);
+					};
+					if ('requestIdleCallback' in window) {
+						requestIdleCallback(inject, { timeout: 2000 });
+					} else {
+						window.addEventListener('load', function () { setTimeout(inject, 0); });
+					}
+				})();
+			</script>
 		)}
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
