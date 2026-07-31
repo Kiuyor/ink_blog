@@ -6,6 +6,7 @@ import { PAGE_SIZE } from "../constants/constants";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { getSortedPosts } from "../utils/content-utils";
 import { getActiveLocaleShort, setActiveLocale } from "../i18n/translation";
+import { siteConfig } from "../config";
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const allBlogPosts = await getSortedPosts();
@@ -27,6 +28,9 @@ const len = localizedData.length;
 ---
 
 <MainGridLayout>
+    <!-- Accessible main heading for the home/list page (visually hidden; keeps the
+         page's <title> tag untouched while giving Swup a11y / SEO a real <h1>). -->
+    <h1 class="sr-only">{siteConfig.title}</h1>
     <PostPage page={localizedPage}></PostPage>
     <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
 </MainGridLayout>

@@ -88,6 +88,10 @@ const mainPanelTop = siteConfig.banner.enable
                 <div id="content-wrapper" class="onload-animation">
                     <!-- the overflow-hidden here prevent long text break the layout-->
                     <!-- make id different from windows.swup global property -->
+                    {/* Accessible page heading for list/index pages (posts pages render their own visible <h1>).
+                        Keeps Swup's a11y plugin from warning "No main heading (h1) found" and gives screen
+                        readers / SEO a per-page main title without changing the visual design. */}
+                    {!setOGTypeArticle && title && <h1 class="sr-only">{title}</h1>}
                     <slot></slot>
                     <div class="footer col-span-2 onload-animation hidden lg:block">
                         <Footer></Footer>
