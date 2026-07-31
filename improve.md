@@ -108,15 +108,21 @@
 
 ### P3
 
-11. **中英双语（i18n 已支持）。** 若受众含国际读者，开 EN/中 双版，对标 Dev.to/Medium 的国际流量。
-12. **性能预算与 Core Web Vitals 监控 + 图片 CDN。** 守住"速度满分"这个最大技术优势。
-13. **资产可移植性文档。** 强调"全是 Markdown，随时迁到 Hugo/Hexo/任何 SSG"，把可迁移写成卖点。
+11. **中英双语（i18n 已支持）。** 若受众含国际读者，开 EN/中 双版，对标 Dev.to/Medium 的国际流量。**（未做）**
+12. **性能优化（核心已做）+ 预算/监控/CDN（待做）。**
+   - ✅ **LCP 解耦 Swup 过渡**（`087e539`）：首屏内容不再被 SPA 过渡 JS 门控，LCP 从 ~4.9s 降到 ~0.45s。
+   - ✅ **LCP 图片 eager + fetchpriority=high**（`215c373`）：侧栏头像（当前真实 LCP 元素）改为即载高优先，移除 `loading=lazy`；列表首篇封面 / 文章页 hero 预留同逻辑。
+   - ✅ **Pagefind 懒加载 + Umami idle 注入**（`ade4a9d`）：搜索脚本改为首次聚焦才加载（首屏省 10.6KB），Umami 信标移出初始关键路径（`requestIdleCallback`），关键路径降至 ~1.4s（Fuwari 功能集固有成本）。
+   - ✅ **Roboto 预加载**（`357dbd6`）：关键 woff2 预加载 + umami/iconify `preconnect`，缩短字体 swap。
+   - ✅ **头像色块化压缩**（`2e659cb`）：512px 蓝墨插画像素化（px-128），Astro WebP 产物 56KB→**25KB**（省 55%），OG 卡同步重生。
+   - ⚠️ **待做**：性能预算（Lighthouse CI 阈值）/ CWV 长期监控（可挂 Grafana 或 Vercel Web Analytics）/ 图片 CDN（cdn.jsdelivr.net 等加速 `_astro` 静态资产）。
+13. **资产可移植性文档。** 强调"全是 Markdown，随时迁到 Hugo/Hexo/任何 SSG"，把可迁移写成卖点。**（未做）**
 
 ---
 
 ## 六、一句话总结
 
-ink_blog 的护城河是 **「Astro 零-JS 极致性能 + 技术向富 Markdown 写作（数学/代码/GitHub 卡）+ 数据 100% 归你、无算法无订阅」**。截至 2026-07-31，**P0/P1 已全部交付并上线、P2 收官**（rebrand＋真文章、Pagefind 中文分词补偿、Giscus、Umami、自动 OG 图、llms.txt＋JSON-LD、Obsidian 写作流、读者主题选择器），线上站点 `blog.suchitems.top` 已不再是 Demo 脚手架。剩余 **P3 三项未做**：中英双语、性能预算/CWV 监控＋图片 CDN、资产可移植性文档——均为锦上添花，可按需推进。把"技术名片资产"这个差异化真正打出来，去赢公众号/掘金/CSDN 那些"数据归平台"的对手。
+ink_blog 的护城河是 **「Astro 零-JS 极致性能 + 技术向富 Markdown 写作（数学/代码/GitHub 卡）+ 数据 100% 归你、无算法无订阅」**。截至 2026-07-31，**P0/P1 已全部交付并上线、P2 收官**（rebrand＋真文章、Pagefind 中文分词补偿、Giscus、Umami、自动 OG 图、llms.txt＋JSON-LD、Obsidian 写作流、读者主题选择器）；**P3 性能核心优化也已落地**（LCP 解耦 Swup ~4.9s→0.45s、LCP 图片 eager+high、Pagefind 懒加载＋Umami idle 注入把关键路径压到 ~1.4s、Roboto 预加载、头像色块化 WebP 56KB→25KB），线上 `blog.suchitems.top` 已不再是 Demo 脚手架、且 Lighthouse 已转绿。剩余 **P3 三项中**：性能预算/监控仪表 + 图片 CDN、中英双语、资产可移植性文档——均为锦上添花，可按需推进。把"技术名片资产"这个差异化真正打出来，去赢公众号/掘金/CSDN 那些"数据归平台"的对手。
 
 ---
 
