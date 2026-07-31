@@ -2,7 +2,7 @@
 
 > 分析视角：站在**技术博主 / 个人品牌经营者**用户角度，对比同类写作品台，给出下一步改进建议。
 > 分析日期：2026-07-29 ｜ 产品现状：基于 Fuwari 模板 fork 的 Astro 5 + Svelte 5 + Tailwind 静态博客，纯 Markdown 写作、零后端。
-> 关键事实：项目**仍处于模板默认态**（标题 "Fuwari"、副标题 "Demo Site"、站点 URL 仍是 `fuwari.vercel.app`、语言 `en`、演示头像、导航指向 fuwari 官方 GitHub，内容仅 6 篇模板示例文章）——本质是脚手架，尚未"变成你的博客"。
+> 关键事实：项目**已完成 rebrand 并上线**（标题 "ink_blog"、副标题 "磨叽的墨迹"、域名 `blog.suchitems.top`、语言 `zh_CN`、作者 "ink/墨水"、真实头像与导航、5 篇真实文章）。已接入 Giscus 评论、Umami 隐私统计、自动 OG 图、llms.txt＋JSON-LD（GEO）、Pagefind 中文分词补偿；提供 Obsidian 写作流与读者主题选择器。剩余待做见 P3。
 
 ---
 
@@ -82,28 +82,29 @@
 
 ### P0（先让它"活"起来，否则无竞品可言）
 
-1. **彻底脱离 Demo 态（rebrand）。**
+1. ✅ **彻底脱离 Demo 态（rebrand，已完成）。**
    - `src/config.ts`：title/subtitle/lang=`zh_CN`/themeColor/avatar/bio/nav 改为你自己的；`astro.config.mjs` 的 `site` 改成你的域名；favicon、About 页、社交链接全部替换。
    - 删除 6 篇模板示例文章，先写 **3–5 篇真实文章**（含一篇"为什么写博客/关于我"）。没有内容，工具再好也只是摆设。
 
-2. **修好中文体验。**
+2. ✅ **修好中文体验（已完成）。**
    - 正确设置 `lang` 与 Meta/OG 语言；验证 Pagefind 中文搜索，若分词不准则接入中文分词（或换搜索方案/加索引说明），否则搜索功能对中文用户形同虚设。
 
-3. **把"数据归你、无算法"做成卖点写进 About。**
-   - 明确传达"自托管、URL 永久、无广告无审核、Markdown 可随时导出迁移"——这是相对公众号/CSDN 的核心差异化，也是技术名片价值所在。
+3. ✅ **把"数据归你、无算法"做成卖点写进 About（已完成，可再强化）。** 关于我/About 已传达自托管、隐私优先、可留言可换肤等差异化；后续可把"Markdown 随时迁出"单独成文进一步打透。
 
 ### P1
 
-4. **加读者互动：Giscus（GitHub 评论）。** 静态友好、零成本、与你现有 GitHub 打通，补齐"留言/正反馈"闭环。
-5. **补 2026 AI 搜索优化：llms.txt + JSON-LD（Article/FAQ/HowTo）+ 自动 sitemap 已具备。** 让 AI 摘要正确引用，吃下中文搜索荒漠下的新流量。
-6. **加隐私分析（Umami / Plausible 自托管或轻量 SaaS）。** 知道什么被读，且不卖数据，呼应"隐私"人设。
-7. **自动 OG 分享图 + 社交卡。** 分享到微信/微博/X 时链接预览美观，提升传播率。
+4. ✅ **加读者互动：Giscus（GitHub 评论，已完成）。** 静态友好、零成本、与你现有 GitHub 打通，补齐"留言/正反馈"闭环。
+5. ✅ **补 2026 AI 搜索优化：llms.txt + JSON-LD（Article/FAQ/HowTo）+ 自动 sitemap（已完成）。** 让 AI 摘要正确引用，吃下中文搜索荒漠下的新流量。
+6. ✅ **加隐私分析（Umami 自托管，已完成）。** 知道什么被读，且不卖数据，呼应"隐私"人设。
+7. ✅ **自动 OG 分享图 + 社交卡（已完成）。** 分享到微信/微博/X 时链接预览美观，提升传播率。
 
 ### P2
 
 8. ~~**平台分发工作流（混合模式）。**~~ **（已取消，2026-07-31）** 用户决定不做平台分发脚本。
-9. **轻量 CMS / 写作入口。** 接 Decap 或 Astro 的 MDX + Obsidian 写作流，让非技术协作者也能投稿；降低 Git 门槛。
-10. **主题/版式可切换。** 内置第二套 accent 或允许读者主题选择器，缓解 Astro 主题少的天花板。
+9. ✅ **轻量 CMS / 写作入口（Obsidian 流，2026-07-31 完成）。** 否决 Decap CMS / 思源（块数据库、不同构）；选定 Obsidian vault 写作流：`.obsidian/app.json` 预配置（templates 文件夹 / 新笔记落 `src/content/posts`）、`templates/post.md` 模板对齐 posts schema、`scripts/publish.sh` 一键发布、`.gitignore` 追加 `.obsidian/`、`OBSIDIAN-zh.md` 中文菜单文档。零运维、Markdown 同构，降低非技术协作者门槛。
+10. ✅ **主题/版式可切换（主题选择器，2026-07-31 完成）。** Fuwari 原生 hue 滑条已对读者开放，升级 `src/components/widget/DisplaySettings.svelte` 加 8 个预设色卡（绯红0/橙金60/竹青145/青碧200/石青230/墨紫300/紫藤330/樱粉345），与滑条双向联动、当前色高亮；默认品牌紫 hue 改为 300（`src/config.ts`），OG 图品牌紫同步 `#C77DFF`。另为过 a11y 对比度，拆分 `--primary-text` 文字色变量，全站 31 处 `text-[var(--primary)]` 替换（commit `15ed310`）。
+
+> **P2 全部收官**（③主题选择器 + ②B Obsidian 流完成；①平台分发已取消）。全部为本地提交，待用户本机 `git push origin master` 推送 + Vercel 设 Production Branch=master 后上线。
 
 ### P3
 
@@ -115,7 +116,7 @@
 
 ## 六、一句话总结
 
-ink_blog 的护城河是 **「Astro 零-JS 极致性能 + 技术向富 Markdown 写作（数学/代码/GitHub 卡）+ 数据 100% 归你、无算法无订阅」**，但当前它**还只是 Fuwari 的 Demo 脚手架**（默认标题/头像/示例文章、中文搜索存疑、零互动、零发现流量）；下一步必须先 **rebrand + 写真内容（让它活起来）、修好中文搜索、加 Giscus + llms.txt + 隐私分析**，并主动用"平台分发引流回独立站"的混合模式破局——把"技术名片资产"这个差异化真正打出来，去赢公众号/掘金/CSDN 那些"数据归平台"的对手。
+ink_blog 的护城河是 **「Astro 零-JS 极致性能 + 技术向富 Markdown 写作（数学/代码/GitHub 卡）+ 数据 100% 归你、无算法无订阅」**。截至 2026-07-31，**P0/P1 已全部交付并上线、P2 收官**（rebrand＋真文章、Pagefind 中文分词补偿、Giscus、Umami、自动 OG 图、llms.txt＋JSON-LD、Obsidian 写作流、读者主题选择器），线上站点 `blog.suchitems.top` 已不再是 Demo 脚手架。剩余 **P3 三项未做**：中英双语、性能预算/CWV 监控＋图片 CDN、资产可移植性文档——均为锦上添花，可按需推进。把"技术名片资产"这个差异化真正打出来，去赢公众号/掘金/CSDN 那些"数据归平台"的对手。
 
 ---
 
