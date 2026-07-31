@@ -39,3 +39,11 @@
 - `engines.node` 已钉死 `"22.x"`（防 Vercel 因 `>=20` 范围自动升 24，导致 `@resvg/resvg-js` 原生包不匹配）。
 - 推代码走「临时 set-url 注入 PAT → push → 立刻还原 remote」流程（PAT 不落盘）。
 - ⚠️ **本沙箱无法 push 到 GitHub**：`github.com:443` 在 TCP 层被封（超时/连接重置），即使 `dangerouslyDisableSandbox` 也不行；`blog.suchitems.top`/`api.vercel.com` 可达但会卡在 Windows schannel 的 TLS 证书吊销检查（git 配 `http.schannelCheckRevoke false` 可解）。结果：从本环境**无法 git push**，需用户在自有机器终端推送，或改用 Vercel CLI（需 token）直部署 dist/。
+
+## 写作流（Obsidian，2026-07-31 定）
+
+- 用户选 **Obsidian 流**（否决 Decap CMS / 思源——思源是块数据库、不直接编辑 .md，需导出桥接，不划算）。
+- 仓库根目录可直接「Open folder as vault」：`.obsidian/app.json`（已 gitignore）已配 `userIgnoreFilters` 屏蔽 node_modules/dist/.workbuddy/public-og、新笔记默认落 `src/content/posts`、Templates 插件 folder=`templates`。
+- `templates/post.md`：Obsidian 模板，`{{title}}`/`{{date}}` 由 Templates 插件替换；frontmatter 字段 = title/published/description/image/tags/category/draft/lang（对齐 `src/content/config.ts` schema）；`draft: true` 默认。
+- 发布：`scripts/publish.sh`（commit+push，`INK_BLOG_PAT` 环境变量存在则走 token 注入）；文件名即 slug（kebab-case）。
+- 富文本（KaTeX/代码块/:::admonition/GitHub 卡）在 Obsidian 里仍手敲 Markdown，编辑器不提供可视化。
