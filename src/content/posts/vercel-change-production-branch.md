@@ -5,7 +5,7 @@ description: 推代码只走 Preview、不进 Production？多半是 Production 
 image: ''
 tags: [Vercel, 部署, 教程]
 category: 技术
-draft: true
+draft: false
 lang: ''
 ---
 
