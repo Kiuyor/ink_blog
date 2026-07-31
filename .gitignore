@@ -35,3 +35,6 @@ yarn.lock
 
 # local sandbox preview server (dev-only workaround)
 scripts/_serve.mjs
+
+# Obsidian vault local state (vault config is machine-specific, keep untracked)
+.obsidian/
