@@ -3,6 +3,8 @@ import type { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "@constants/constants";
 export type SiteConfig = {
 	title: string;
 	subtitle: string;
+	/** English subtitle, used for the /en/ locale (homepage <title>, RSS/llms description). Falls back to `subtitle` when absent. */
+	subtitleEn?: string;
 
 	lang:
 		| "en"

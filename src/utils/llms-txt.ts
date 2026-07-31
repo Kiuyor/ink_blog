@@ -1,6 +1,7 @@
 import { getSortedPosts } from "@utils/content-utils";
 import { siteConfig } from "@/config";
 import { getLocaleUrl, getBaseSlug } from "@utils/url-utils";
+import { siteSubtitle } from "@i18n/translation";
 
 function localeShortOf(locale: string): "zh" | "en" {
 	return locale.toLowerCase().startsWith("en") ? "en" : "zh";
@@ -18,8 +19,9 @@ export async function buildLlmsTxt(siteBase: string, locale = "zh"): Promise<str
 
 	lines.push(`# ${siteConfig.title}`);
 	lines.push("");
-	if (siteConfig.subtitle) {
-		lines.push(`> ${siteConfig.subtitle}`);
+	const subtitle = siteSubtitle(loc);
+	if (subtitle) {
+		lines.push(`> ${subtitle}`);
 		lines.push("");
 	}
 	lines.push(`Personal tech blog (language: ${loc === "en" ? "en" : "zh-CN"}).`);
@@ -56,7 +58,8 @@ export async function buildLlmsFullTxt(siteBase: string, locale = "zh"): Promise
 
 	parts.push(`# ${siteConfig.title} — full content`);
 	parts.push("");
-	if (siteConfig.subtitle) parts.push(`> ${siteConfig.subtitle}`);
+	const subtitle = siteSubtitle(loc);
+	if (subtitle) parts.push(`> ${subtitle}`);
 	parts.push("");
 
 	for (const post of posts) {

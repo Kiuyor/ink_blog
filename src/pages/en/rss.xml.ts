@@ -18,7 +18,7 @@ function stripInvalidXmlChars(str: string): string {
 }
 
 export async function GET(context: APIContext) {
-	const locale = (context.currentLocale || "zh").toLowerCase().startsWith("en")
+	const locale = (context.currentLocale || "en").toLowerCase().startsWith("en")
 		? "en"
 		: "zh";
 	const blog = (await getSortedPosts()).filter((p) => (p.data.lang || "zh") === locale);

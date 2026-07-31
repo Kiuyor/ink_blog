@@ -70,6 +70,18 @@ export function getActiveLocaleShort(): string {
 	return activeLocaleShort;
 }
 
+/**
+ * Locale-aware site subtitle.
+ * Pass an explicit short locale ("zh" | "en") for non-render contexts
+ * (e.g. RSS/llms builders that already know the target locale); omit it to
+ * use the active request locale (set via setActiveLocale in Layout).
+ */
+export function siteSubtitle(localeShort?: "zh" | "en"): string {
+	const loc = localeShort || activeLocaleShort;
+	if (loc === "en") return siteConfig.subtitleEn || siteConfig.subtitle;
+	return siteConfig.subtitle;
+}
+
 export function getTranslation(lang: string): Translation {
 	return map[normalizeDictKey(lang)] || map.zh_cn;
 }
