@@ -7,8 +7,24 @@ import { getDefaultHue, getHue, setHue } from "@utils/setting-utils";
 let hue = getHue();
 const defaultHue = getDefaultHue();
 
+// 预设主题色卡（name 仅作 tooltip）
+const presets: { name: string; hue: number }[] = [
+	{ name: "绯红", hue: 0 },
+	{ name: "橙金", hue: 60 },
+	{ name: "竹青", hue: 145 },
+	{ name: "青碧", hue: 200 },
+	{ name: "石青", hue: 230 },
+	{ name: "墨紫", hue: 300 },
+	{ name: "紫藤", hue: 330 },
+	{ name: "樱粉", hue: 345 },
+];
+
 function resetHue() {
 	hue = getDefaultHue();
+}
+
+function pickPreset(h: number) {
+	hue = h;
 }
 
 $: if (hue || hue === 0) {
@@ -37,6 +53,18 @@ $: if (hue || hue === 0) {
             </div>
         </div>
     </div>
+    <div class="flex flex-row gap-2 mb-3 items-center justify-between px-1">
+        {#each presets as p (p.hue)}
+            <button
+                aria-label={`${i18n(I18nKey.themeColor)} ${p.name}`}
+                title={p.name}
+                class="preset-swatch w-7 h-7 rounded-full transition active:scale-90 will-change-transform"
+                class:preset-active={hue === p.hue}
+                style={`background: oklch(0.70 0.14 ${p.hue})`}
+                on:click={() => pickPreset(p.hue)}
+            ></button>
+        {/each}
+    </div>
     <div class="w-full h-6 px-1 bg-[oklch(0.80_0.10_0)] dark:bg-[oklch(0.70_0.10_0)] rounded select-none">
         <input aria-label={i18n(I18nKey.themeColor)} type="range" min="0" max="360" bind:value={hue}
                class="slider" id="colorSlider" step="5" style="width: 100%">
@@ -45,6 +73,15 @@ $: if (hue || hue === 0) {
 
 
 <style lang="stylus">
+    .preset-swatch
+      outline 2px solid transparent
+      outline-offset 2px
+      &:hover
+        transform scale(1.1)
+
+    .preset-active
+      outline-color var(--primary)
+
     #display-setting
       input[type="range"]
         -webkit-appearance none

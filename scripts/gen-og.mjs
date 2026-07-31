@@ -92,7 +92,7 @@ function ogElement({ title, description, avatar }) {
             height: 84,
             borderRadius: "50%",
             backgroundColor: "#16161f",
-            border: "2px solid #9370DB",
+            border: "2px solid #C77DFF",
             overflow: "hidden",
             display: "flex",
             justifyContent: "center",
@@ -108,7 +108,7 @@ function ogElement({ title, description, avatar }) {
       "div",
       { style: { display: "flex", flexDirection: "column" } },
       h("div", { style: { fontSize: "32px", fontWeight: 700, color: "#ffffff", lineHeight: 1.1 } }, "ink_blog"),
-      h("div", { style: { fontSize: "20px", color: "#9370DB", letterSpacing: "6px", marginTop: "4px" } }, "磨叽的墨迹"),
+      h("div", { style: { fontSize: "20px", color: "#C77DFF", letterSpacing: "6px", marginTop: "4px" } }, "磨叽的墨迹"),
     ),
   );
 
