@@ -1,99 +1,135 @@
-# 🍥Fuwari  
-![Node.js >= 20](https://img.shields.io/badge/node.js-%3E%3D20-brightgreen) 
-![pnpm >= 9](https://img.shields.io/badge/pnpm-%3E%3D9-blue) 
-[![DeepWiki](https://img.shields.io/badge/DeepWiki-saicaca%2Ffuwari-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/saicaca/fuwari)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari?ref=badge_shield&issueType=license)
+# 🪶 ink_blog
 
-A static blog template built with [Astro](https://astro.build).
+> 墨水（ink）用纯 Markdown 写的中英双语个人博客——零后端、隐私友好、构建期自动出封面图。
 
-[**🖥️ Live Demo (Vercel)**](https://fuwari.vercel.app)
+基于 [Fuwari](https://github.com/saicaca/fuwari) fork 的 [Astro](https://astro.build) 5 + Svelte 5 + Tailwind 3 静态博客。默认中文（`/`），英文在 `/en/`；文章用 `<base>.zh.md` / `<base>.en.md` 同源双语，主题色品红紫（hue 300）。
 
-![Preview Image](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
+[![Node.js 22.x](https://img.shields.io/badge/node.js-22.x-brightgreen)](https://nodejs.org)
+[![pnpm 9](https://img.shields.io/badge/pnpm-9-blue)](https://pnpm.io)
+[![Astro 5.13](https://img.shields.io/badge/Astro-5.13-ff5d01)](https://astro.build)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
-🌏 README in
-[**中文**](https://github.com/saicaca/fuwari/blob/main/docs/README.zh-CN.md) /
-[**日本語**](https://github.com/saicaca/fuwari/blob/main/docs/README.ja.md) /
-[**한국어**](https://github.com/saicaca/fuwari/blob/main/docs/README.ko.md) /
-[**Español**](https://github.com/saicaca/fuwari/blob/main/docs/README.es.md) /
-[**ไทย**](https://github.com/saicaca/fuwari/blob/main/docs/README.th.md) /
-[**Tiếng Việt**](https://github.com/saicaca/fuwari/blob/main/docs/README.vi.md) /
-[**Bahasa Indonesia**](https://github.com/saicaca/fuwari/blob/main/docs/README.id.md) (Provided by the community and may not always be up-to-date)
+- 🌐 线上地址：**https://blog.suchitems.top/**
+- 📦 源码仓库：**https://github.com/Kiuyor/ink_blog**
 
-## ✨ Features
+## ✨ 项目亮点
 
-- [x] Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com)
-- [x] Smooth animations and page transitions
-- [x] Light / dark mode
-- [x] Customizable theme colors & banner
-- [x] Responsive design
-- [x] Search functionality with [Pagefind](https://pagefind.app/)
-- [x] [Markdown extended features](https://github.com/saicaca/fuwari?tab=readme-ov-file#-markdown-extended-syntax)
-- [x] Table of contents
-- [x] RSS feed
+- **中英双语原生支持**：`/` 中文、`/en/` 英文，按 `base slug` 共享路由、语言切换器双向互链；`llms.txt` / `rss.xml` 均提供中英文两个版本。
+- **构建期自动生成 OG 图**：`scripts/gen-og.mjs` 用 satori + `@resvg/resvg-js` 在 `pnpm build` 最前面把每篇文章渲染成 `public/og/<slug>.png`，无需手做封面图、社交分享卡片开箱即用。
+- **可复用自动翻译脚本**：`scripts/translate.mjs` 三后端自动切换 —— `DEEPLX_URL` > `DEEPL_API_KEY` > `OpenAI 兼容接口`（可接 OpenAI / DeepSeek / 通义 / 本地 Ollama），批量把缺 `.en.md` 的 `.zh.md` 译为英文，并保护代码块 / 数学公式 / 指令块不被机翻破坏。
+- **零后端、隐私友好**：统计用自托管 [Umami](https://umami.is)（无 Cookie），评论用 [Giscus](https://giscus.app)（GitHub issue 承载）；全文搜索用 [Pagefind](https://pagefind.app)，并针对中文注入分词镜像补偿。
+- **Markdown 富文本**：Admonition 提示框、GitHub 仓库卡片、Expressive Code 增强代码块（行号 / 折叠 / 语言徽标 / 自定义复制按钮）、KaTeX 数学公式、文内目录、平滑页面过渡。
+- **机器可读优化（GEO）**：文章页输出 JSON-LD（BlogPosting / FAQPage / HowTo），并提供 `/llms.txt`、`/llms-full.txt` 端点。
 
-## 🚀 Getting Started
+## 📦 环境要求
 
-1. Create your blog repository:
-    - [Generate a new repository](https://github.com/saicaca/fuwari/generate) from this template or fork this repository.
-    - Or run one of the following commands:
-       ```sh
-       npm create fuwari@latest
-       yarn create fuwari
-       pnpm create fuwari@latest
-       bun create fuwari@latest
-       deno run -A npm:create-fuwari@latest
-       ```
-2. To edit your blog locally, clone your repository, run `pnpm install` to install dependencies.
-    - Install [pnpm](https://pnpm.io) `npm install -g pnpm` if you haven't.
-3. Edit the config file `src/config.ts` to customize your blog.
-4. Run `pnpm new-post <filename>` to create a new post and edit it in `src/content/posts/`.
-5. Deploy your blog to Vercel, Netlify, GitHub Pages, etc. following [the guides](https://docs.astro.build/en/guides/deploy/). You need to edit the site configuration in `astro.config.mjs` before deployment.
+| 依赖 | 版本 |
+|---|---|
+| Node.js | `22.x`（Vercel 已钉死，避免自动升 24 导致原生包不匹配） |
+| pnpm | `9.x`（仓库锁 `pnpm@9.14.4`，`preinstall` 强制 only-allow pnpm） |
 
-## 📝 Frontmatter of Posts
+## 🚀 快速开始（本地）
+
+```bash
+# 1. 安装依赖
+pnpm install
+
+# 2. 启动开发服务器（默认 http://localhost:4321）
+pnpm dev
+```
+
+> 在 `src/config.ts` 里改站点标题、副标题、头像、导航、主题色、Umami / Giscus 配置。
+
+## ✍️ 写作流（Obsidian）
+
+仓库根目录可直接「Open folder as vault」。新文章用 Templates 插件的 `templates/post.md` 生成，落盘到 `src/content/posts/`：
+
+- 文件名即 slug（建议 kebab-case，如 `my-first-post.md`）。
+- 双语：写 `my-first-post.zh.md` 与 `my-first-post.en.md`，各自在 frontmatter 标 `lang: zh` / `lang: en`。
+- 草稿：`draft: true` 时 `pnpm build` 不会发布；改 `false` 即上线。
+- 发布：`scripts/publish.sh`（存在 `INK_BLOG_PAT` 环境变量时走 token 注入 commit + push）。
+
+## 📝 文章 Frontmatter
 
 ```yaml
 ---
-title: My First Blog Post
-published: 2023-09-09
-description: This is the first post of my new Astro blog.
-image: ./cover.jpg
-tags: [Foo, Bar]
-category: Front-end
-draft: false
-lang: jp      # Set only if the post's language differs from the site's language in `config.ts`
+title: 我的第一篇文章
+published: 2026-08-01      # 必填，发布日期
+updated: 2026-08-02       # 可选，更新日期
+description: 这篇文章讲了什么
+image: ./cover.jpg        # 可选，文章封面（相对路径或 URL）
+tags: [Writing, Tools]    # 可选
+category: Notes           # 可选
+draft: false              # true 时不发布
+lang: zh                  # zh | en；与文件名后缀对应
 ---
 ```
 
-## 🧩 Markdown Extended Syntax
+## 🧩 Markdown 扩展语法
 
-In addition to Astro's default support for [GitHub Flavored Markdown](https://github.github.com/gfm/), several extra Markdown features are included:
+除 Astro 默认的 [GitHub Flavored Markdown](https://github.github.com/gfm/) 外，还支持：
 
-- Admonitions ([Preview and Usage](https://fuwari.vercel.app/posts/markdown-extended/#admonitions))
-- GitHub repository cards ([Preview and Usage](https://fuwari.vercel.app/posts/markdown-extended/#github-repository-cards))
-- Enhanced code blocks with Expressive Code ([Preview](https://fuwari.vercel.app/posts/expressive-code/) / [Docs](https://expressive-code.com/))
+- **提示框**：`:::note` / `:::tip` / `:::warning` / `:::caution` / `:::important`，以及 `:::faq` / `:::howto{title="..."}`。
+- **GitHub 仓库卡片**：`::github{repo="owner/name"}`。
+- **增强代码块**（Expressive Code）：行号、可折叠分区、语言徽标、自定义复制按钮。
+- **数学公式**：行内 `$E=mc^2$` 与块级 `$$...$$`（KaTeX）。
 
-## ⚡ Commands
+## ⚡ 常用命令
 
-All commands are run from the root of the project, from a terminal:
+所有命令在项目根目录运行：
 
-| Command                    | Action                                              |
-|:---------------------------|:----------------------------------------------------|
-| `pnpm install`             | Installs dependencies                               |
-| `pnpm dev`                 | Starts local dev server at `localhost:4321`         |
-| `pnpm build`               | Build your production site to `./dist/`             |
-| `pnpm preview`             | Preview your build locally, before deploying        |
-| `pnpm check`               | Run checks for errors in your code                  |
-| `pnpm format`              | Format your code using Biome                        |
-| `pnpm new-post <filename>` | Create a new post                                   |
-| `pnpm astro ...`           | Run CLI commands like `astro add`, `astro check`    |
-| `pnpm astro --help`        | Get help using the Astro CLI                        |
+| 命令 | 作用 |
+|---|---|
+| `pnpm install` | 安装依赖 |
+| `pnpm dev` | 本地开发服务器（localhost:4321） |
+| `pnpm build` | 完整生产构建：生成 OG 图 → `astro build` → 注入中文分词 → Pagefind 索引 |
+| `pnpm preview` | 本地预览构建产物 |
+| `pnpm check` | Astro 类型 / 错误检查 |
+| `pnpm new-post <文件名>` | 新建文章（落 `src/content/posts/`） |
+| `pnpm translate` | 自动翻译缺 `.en.md` 的中文文为英文（见下） |
+| `pnpm format` / `pnpm lint` | Biome 格式化 / 检查 |
 
-## ✏️ Contributing
+## 🌍 自动翻译（`scripts/translate.mjs`）
 
-Check out the [Contributing Guide](https://github.com/saicaca/fuwari/blob/main/CONTRIBUTING.md) for details on how to contribute to this project.
+后端按环境变量自动选择，优先级：`DEEPLX_URL` > `DEEPL_API_KEY` > `OPENAI_API_KEY`。
+
+```bash
+# 批量：把缺 .en.md 的 .zh.md 全部译为英文
+pnpm translate
+
+# 指定单篇
+node scripts/translate.mjs src/content/posts/my-post.zh.md
+
+# 用自建 DeepLX（免费）
+DEEPLX_URL=http://localhost:1188 pnpm translate
+
+# 用 OpenAI 兼容接口（可指向 DeepSeek / 通义 / 本地 Ollama）
+OPENAI_API_KEY=sk-xxx OPENAI_BASE_URL=https://api.openai.com/v1 OPENAI_MODEL=gpt-4o-mini pnpm translate
+```
+
+保护机制：DeepL / DeepLX 路径会把代码块、行内代码、数学公式、`:::` 指令行替换成占位符，翻译后还原，避免机翻破坏语法。更多选项见脚本顶部注释（`DRY_RUN` / `FORCE` / `TEST` 等）。
+
+## 🧭 项目结构（节选）
+
+- `src/config.ts`：站点 / 导航 / 个人资料 / Umami / Giscus / 主题色等全部配置。
+- `src/content/posts/`：文章（`.zh.md` / `.en.md` 双语成对）。
+- `src/content/spec/`：`about.md` / `about.en.md` 等单页内容。
+- `src/pages/`：路由；英文版放在 `src/pages/en/`（Astro 静态构建非默认语言页需物理文件）。
+- `src/i18n/`：字典与 `setActiveLocale` / `i18n` / `siteSubtitle` 等辅助。
+- `scripts/`：`gen-og.mjs`（OG 图）、`segment-zh.mjs`（中文分词）、`translate.mjs`（翻译）、`new-post.js`、`publish.sh`。
+- `astro.config.mjs`：i18n、Expressive Code、Swup 过渡、Markdown/Rehype 插件链路。
+
+## 🛠️ 部署（Vercel）
+
+`vercel.json` 已配置：`framework: astro`、`buildCommand: pnpm build`、`outputDirectory: dist`。
+
+- 仓库源码在 **`master`** 分支，Vercel 的 **Production Branch 必须设为 `master`**（默认是 `main`，旧分支已无用）。
+- `engines.node` 钉死 `22.x`，防止 Vercel 自动升 24 导致 `@resvg/resvg-js` 原生包不匹配。
+
+## 🤝 贡献
+
+这是墨水（ink）的个人博客仓库，欢迎 Issue 与建议；如需基于此二次开发，请先 Fork。
 
 ## 📄 License
 
-This project is licensed under the MIT License.
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari?ref=badge_large&issueType=license)
+MIT（基于 [Fuwari](https://github.com/saicaca/fuwari) 二次开发，原版权 © 2024 saicaca）。
