@@ -2,7 +2,9 @@
 html.is-changing .transition-swup-fade {
     @apply transition-all duration-200
 }
-html.is-animating .transition-swup-fade {
+/* 首屏不藏内容（LCP 解耦于 JS 体积）：仅当 Swup 就绪（首次 page:view 后）才在过渡期隐去，
+   这样 SPA 导航的淡入淡出保留，但第一次直接访问时内容立即可见，不被 is-animating 压到 JS 跑完。 */
+html.swup-ready.is-animating .transition-swup-fade {
     @apply opacity-0 translate-y-4
 }
 

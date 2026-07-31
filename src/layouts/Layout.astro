@@ -449,6 +449,8 @@ const setup = () => {
 		}
 	});
 	window.swup.hooks.on('page:view', () => {
+		// 标记 Swup 已就绪：此后 SPA 导航的过渡动画才隐去内容（首屏保持可见，避免 LCP 被 JS 阻塞）
+		document.documentElement.classList.add('swup-ready');
 		// hide the temp high element when the transition is done
 		const heightExtend = document.getElementById('page-height-extend')
 		if (heightExtend) {
