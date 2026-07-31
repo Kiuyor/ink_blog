@@ -111,6 +111,7 @@
 11. **中英双语（已上线）。** 完整语言路由 `/`（中文，保持旧链接/OG/Giscus 不破）+ `/en/`（英文），base-slug 互链 + 右上角 中/EN 切换器 + UI 字典随语言。**（已做，2026-07-31）**
    - 架构：`prefixDefaultLocale:false`；内容 `<base>.zh.md`/`<base>.en.md` + `lang` 字段，按 base slug 共享路由，渲染期按 `Astro.currentLocale` 选版本（缺另一语言回退同 base）。
    - 关键坑：Astro i18n **静态构建不自动生成非默认语言页**，须在 `src/pages/en/` 下提供物理文件（复制根页 + 导入改别名）；`entry.id` 保留点（`hello-im-ink.zh.md`）而 `entry.slug` 被 slugify 去点，URL 拼接统一用 `entry.id` + `getBaseSlug`；`getLinkPresets` 返回裸路径避免 nav 双重 `/en/` 前缀。
+   - 复用翻译脚本：`scripts/translate.mjs`（双后端，DeepL key 优先、否则走 OpenAI 兼容接口可接 OpenAI/DeepSeek/通义/本地 Ollama），`pnpm translate` 一键把缺 `.en.md` 的 `.zh.md` 批量翻成英文；保留 frontmatter 与全部 Markdown 语法（代码块/数学/指令块均遮蔽保护）。现有 4 篇中文文已用该流程产出 `.en.md`。
 12. **性能优化（核心已做）+ 预算/监控/CDN（待做）。**
    - ✅ **LCP 解耦 Swup 过渡**（`087e539`）：首屏内容不再被 SPA 过渡 JS 门控，LCP 从 ~4.9s 降到 ~0.45s。
    - ✅ **LCP 图片 eager + fetchpriority=high**（`215c373`）：侧栏头像（当前真实 LCP 元素）改为即载高优先，移除 `loading=lazy`；列表首篇封面 / 文章页 hero 预留同逻辑。
