@@ -35,7 +35,7 @@
 ## 部署（Vercel）
 
 - 仓库 `Kiuyor/ink_blog` 源码在 **`master`** 分支（远程另有一条遗留 `main`=旧 Cloudflare 成品，已无用）。
-- Vercel 项目 `kiuyors-projects/ink-blog`。⚠️ **Production Branch 必须设成 `master`**，否则推 `master` 只走 Preview 不进 Production（旧默认是 `main`）。改法：Project Settings → Git → Production Branch 下拉改 `master` → Save。**若 Git 设置页找不到该下拉（某些版本不暴露），直接用 Deployments → 目标 `master` 构建 → ⋯ → Promote to Production，等价效果、100% 可上线**；或本机 `vercel project update --production-branch master`（需 Vercel CLI 登录）。
+- Vercel 项目 `kiuyors-projects/ink-blog`。⚠️ **Production Branch 必须设成 `master`**，否则推 `master` 只走 Preview 不进 Production（旧默认是 `main`）。**正确入口：Project Settings → Environments → 点开 Production 那一项 → 改分支为 `master` → Save**（不在 Git 设置页！之前在 Git 页找不到是因为入口错在这）。临时方案：Deployments → 目标 `master` 构建 → ⋯ → Promote to Production（等价效果、可上线）；或本机 `vercel project update --production-branch master`（需 Vercel CLI 登录）。
 - `engines.node` 已钉死 `"22.x"`（防 Vercel 因 `>=20` 范围自动升 24，导致 `@resvg/resvg-js` 原生包不匹配）。
 - 推代码走「临时 set-url 注入 PAT → push → 立刻还原 remote」流程（PAT 不落盘）。
 - ⚠️ **本沙箱无法 push 到 GitHub**：`github.com:443` 在 TCP 层被封（超时/连接重置），即使 `dangerouslyDisableSandbox` 也不行；`blog.suchitems.top`/`api.vercel.com` 可达但会卡在 Windows schannel 的 TLS 证书吊销检查（git 配 `http.schannelCheckRevoke false` 可解）。结果：从本环境**无法 git push**，需用户在自有机器终端推送，或改用 Vercel CLI（需 token）直部署 dist/。
