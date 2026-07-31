@@ -31,10 +31,11 @@ export default defineConfig({
 	trailingSlash: "always",
 	i18n: {
 		defaultLocale: "zh",
-		locales: ["zh", "en"],
-		// Keep the existing Chinese site at the root ("/") so today's launched
-		// URLs / OG cards / Giscus threads / SEO all keep working. English lives
-		// under "/en/". Flip to `true` later if you want symmetric /zh + /en.
+		// Chinese-only for now. The i18n plumbing (translation dictionaries,
+		// getLocaleUrl, setActiveLocale, per-post `lang` field) is intentionally
+		// kept so extra locales can be re-added: append the locale code here and
+		// restore the `/en` branch in `getLocaleUrl` + add `src/pages/<locale>/`.
+		locales: ["zh"],
 		prefixDefaultLocale: false,
 		routing: {
 			redirectToDefaultLocale: false,

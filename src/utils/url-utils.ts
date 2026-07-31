@@ -1,6 +1,5 @@
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
-import { getActiveLocaleShort } from "@i18n/translation";
 
 export function pathsEqual(path1: string, path2: string) {
 	const normalizedPath1 = path1.replace(/^\/|\/$/g, "").toLowerCase();
@@ -14,18 +13,14 @@ function joinUrl(...parts: string[]): string {
 }
 
 /**
- * Locale-aware URL builder. Prepends the `/en` prefix when the target locale is English.
- * Use this for *internal page routes* (home, posts, archive, about, rss, …).
+ * Locale-aware URL builder. Kept as i18n infrastructure so extra locales can be
+ * re-enabled later, but the site currently ships Chinese only, so this behaves as
+ * a plain BASE_URL-prefixed builder (no `/en` prefix). To re-enable a prefixed
+ * locale, restore the prefix branch here and add the locale to `astro.config.mjs`.
  * For static assets (favicons, fonts, OG images) use the plain `url()` instead.
  */
-export function getLocaleUrl(path: string, locale?: string): string {
-	const loc = locale
-		? locale.toLowerCase().startsWith("en")
-			? "en"
-			: "zh"
-		: getActiveLocaleShort();
-	const prefix = loc === "en" ? "/en" : "";
-	return joinUrl("", import.meta.env.BASE_URL, prefix, path);
+export function getLocaleUrl(path: string, _locale?: string): string {
+	return joinUrl("", import.meta.env.BASE_URL, path);
 }
 
 /** Strip a trailing language suffix (`.zh` / `.en` / `.zh_cn` / `.zh_tw`) from a
